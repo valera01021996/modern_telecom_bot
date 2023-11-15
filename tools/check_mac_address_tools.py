@@ -4,7 +4,6 @@ import re
 def check_availability_mac_address(ip_address):
     sshcli = connect_to_router("192.168.100.1")
     output = sshcli.send_command_timing(f"ip arp print where address={ip_address}")
-    print(output)
     pattern = r"(DC)\s+([\d.]+)\s+([0-9A-Fa-f:]+)"
     match = re.search(pattern, output)
     if match:

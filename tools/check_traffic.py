@@ -21,8 +21,8 @@ def get_traffic_info(ip_address):
             upload = int(rate_splitted[0])/1000000
             download = int(rate_splitted[1])/1000000
             text += f"IP address: {ip_address}\n" \
-                    f"Upload: {upload} Мбит/с\n" \
-                    f"Download: {download} Мбит/с\n"
+                    f"Upload ⬆️: {upload} Мбит/с\n" \
+                    f"Download ⬇️: {download} Мбит/с\n"
         # else:
         #     return "Соответствие не найдено."
     if text:

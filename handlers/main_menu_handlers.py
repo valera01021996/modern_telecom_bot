@@ -31,7 +31,7 @@ async def show_mac_address(message: Message, state: FSMContext):
     await bot.send_message(chat_id, "Выберите, что вас интересует", reply_markup=generate_main_menu())
 
 
-@dp.message_handler(Text(equals="Проверить трафик абонента"))
+@dp.message_handler(Text(equals="Проверить трафик"))
 async def check_mac_address(message: Message, state: FSMContext):
     await FSMDigitnet.check_traffic.set()
     chat_id = message.chat.id

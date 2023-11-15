@@ -11,7 +11,7 @@ def generate_main_menu():
     markup = ReplyKeyboardMarkup(resize_keyboard=True)
     markup.row(
         KeyboardButton(text="Проверить мак адрес"),
-        KeyboardButton(text="Проверить трафик абонента")
+        KeyboardButton(text="Проверить трафик")
     )
     return markup
 
