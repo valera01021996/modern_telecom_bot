@@ -12,17 +12,20 @@ class FSMDigitnet(StatesGroup):
 
 @dp.message_handler(Text(equals="Проверить мак адрес"))
 async def check_mac_address(message: Message):
-    await FSMDigitnet.check_mac_address.set()
     chat_id = message.chat.id
     await bot.send_message(chat_id, "Введите ip адрес абонента: \n"
                                     "(формат: X.X.X.X)")
+    await FSMDigitnet.check_mac_address.set()
+
 
 
 @dp.message_handler(state=FSMDigitnet.check_mac_address)
 async def show_mac_address(message: Message, state: FSMContext):
     chat_id = message.chat.id
     ip_address = message.text
+    print(ip_address)
     result = check_availability_mac_address(ip_address)
+    print(result)
     await bot.send_message(chat_id, result)
     await state.finish()
     await bot.send_message(chat_id, "Выберите, что вас интересует", reply_markup=generate_main_menu())
