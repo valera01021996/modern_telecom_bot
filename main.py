@@ -3,7 +3,7 @@ import re
 
 mikrotik_router = {
     'device_type': 'mikrotik_routeros',
-    'host': "10.10.9.2",
+    'host': "192.168.100.1",
     'port': '22',
     'username': 'for_bot',
     'password': 'txfnUb6Nd8'
@@ -11,16 +11,22 @@ mikrotik_router = {
 
 sshcli = ConnectHandler(**mikrotik_router)
 
-output = sshcli.send_command("ip arp/print where address=10.10.9.1")
-pattern = r"(DC)\s+([\d.]+)\s+([0-9A-Fa-f:]+)"
-match = re.search(pattern, output)
+output = sshcli.send_command_timing("queue simple print rate where target=185.215.5.21/32")
 
-if match:
-    flag = match.group(1)
-    address = match.group(2)
-    mac_address = match.group(3)
-    print("Flag:", flag)
-    print("Address:", address)
-    print("MAC Address:", mac_address)
-else:
-    print("Соответствие не найдено.")
+print(output)
+
+
+
+
+# pattern = r"(DC)\s+([\d.]+)\s+([0-9A-Fa-f:]+)"
+# match = re.search(pattern, output)
+#
+# if match:
+#     flag = match.group(1)
+#     address = match.group(2)
+#     mac_address = match.group(3)
+#     print("Flag:", flag)
+#     print("Address:", address)
+#     print("MAC Address:", mac_address)
+# else:
+#     print("Соответствие не найдено.")
