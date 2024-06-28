@@ -55,12 +55,12 @@ async def show_traffic(message: Message, state: FSMContext):
 async def check_pppoe(message: Message):
     await FSMDigitnet.check_pppoe.set()
     chat_id = message.chat.id
-    await bot.send_message(chat_id, "Введите введите логин абонента: ")
+    await bot.send_message(chat_id, "Введите логин абонента: ")
 
 @dp.message_handler(state=FSMDigitnet.check_pppoe)
 async def show_pppoe(message: Message, state: FSMContext):
     chat_id = message.chat.id
-    result = check_pppoe_session(message.text)
+    result = check_pppoe_session(message.text.lower())
     await bot.send_message(chat_id, result)
     await state.finish()
     await bot.send_message(chat_id, "Выберите, что вас интересует", reply_markup=generate_main_menu())
