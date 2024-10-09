@@ -9,6 +9,6 @@ deploy_job:
     - echo "Pulling the latest code..."
     - git pull origin main
     - echo "Restarting the Telegram bot service..."
-    - systemctl restart telegram-bot
+    - sudo systemctl restart telegram-bot
   only:
     - main  # Выполнять задачу только при пуше в ветку main
