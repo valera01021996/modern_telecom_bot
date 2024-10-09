@@ -1,6 +1,9 @@
 stages:
   - deploy
 
+variables:
+  CI_DEBUG_TRACE: "true"
+
 deploy_job:
   stage: deploy
   tags:
