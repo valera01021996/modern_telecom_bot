@@ -1,5 +1,5 @@
 from config import bot, dp
-from tools.check_mac_address_tools import check_availability_mac_address
+from tools.check_mac_address_tools import check_arp_entry
 from tools.check_traffic import get_traffic_info
 from tools.check_pppoe import check_pppoe_session
 from tools.check_mac_bridge import check_mac_in_bridge_hosts
@@ -28,7 +28,7 @@ async def show_arp(message: Message, state: FSMContext):
     chat_id = message.chat.id
     ip_address = message.text
     print(ip_address)
-    result = check_availability_mac_address(ip_address)
+    result = check_arp_entry(ip_address)
     print(result)
     await bot.send_message(chat_id, result)
     await state.finish()
