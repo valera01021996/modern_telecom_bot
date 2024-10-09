@@ -7,7 +7,7 @@ deploy_job:
     - tg_bot  # Тег, связанный с вашим Runner
   script:
     - echo "Pulling the latest code..."
-    - git pull origin gitlab
+    - sudo git pull origin gitlab
     - echo "Restarting the Telegram bot service..."
     - sudo systemctl restart telegram-bot
   only:
