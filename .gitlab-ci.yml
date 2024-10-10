@@ -11,7 +11,7 @@ deploy_job:
   script:
     - git remote -v
     - echo "Pulling the latest code..."
-    - git pull gitlab main
+    - git pull origin main
     - echo "Installing/Updating required libraries..."
     - pip install -r requirements.txt  # Установка/обновление библиотек из requirements.txt
     - echo "Restarting the Telegram bot service..."
