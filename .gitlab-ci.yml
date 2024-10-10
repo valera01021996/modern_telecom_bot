@@ -9,6 +9,7 @@ deploy_job:
   tags:
     - tg_bot  # Тег, связанный с вашим Runner
   script:
+    - git remote -v
     - echo "Pulling the latest code..."
     - git pull gitlab main
     - echo "Restarting the Telegram bot service..."
