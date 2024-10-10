@@ -15,3 +15,4 @@ deploy_job:
     - systemctl restart bot.service
   only:
     - main  # Выполнять задачу только при пуше в ветку main
+#1234
