@@ -26,7 +26,11 @@ def get_traffic_info(ip_address):
     fig, ax = plt.subplots()
     bars = ax.bar(['Upload', 'Download'], [upload, download], color=['#1f77b4', '#2ca02c'],
                   edgecolor='black', linewidth=1.5)
-
+    if not upload:
+        upload = 0.0
+    if not download:
+        download = 0.0
+        
     # Добавим тени
     for bar in bars:
         bar.set_path_effects([path_effects.SimpleLineShadow(), path_effects.Normal()])
@@ -46,7 +50,7 @@ def get_traffic_info(ip_address):
     ax.set_title('Текущая скорость', fontsize=16)
 
     # Установим пределы оси Y
-    ax.set_ylim(0, max(upload, download) + 10)
+    ax.set_ylim(0, max(float(upload), float(download)) + 10)
 
     # Сохранение графика в буфер
     buffer = io.BytesIO()
