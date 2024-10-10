@@ -10,8 +10,8 @@ deploy_job:
     - tg_bot  # Тег, связанный с вашим Runner
   script:
     - echo "Pulling the latest code..."
-    - sudo git pull origin gitlab main
+    - git pull origin gitlab main
     - echo "Restarting the Telegram bot service..."
-    - sudo systemctl restart bot.service
+    - systemctl restart bot.service
   only:
     - main  # Выполнять задачу только при пуше в ветку main
