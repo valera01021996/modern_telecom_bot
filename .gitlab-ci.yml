@@ -17,4 +17,4 @@ deploy_job:
     - echo "Restarting the Telegram bot service..."
     - sudo systemctl restart bot.service  # Используйте sudo, если необходимо
   only:
-    - main  # Выполнять задачу только при пуше в ветку main
+    - main  
