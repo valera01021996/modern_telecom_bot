@@ -11,10 +11,10 @@ deploy_job:
   script:
     - git remote -v
     - echo "Pulling the latest code..."
-    - git pull origin main
+    - git pull gitlab main
     - echo "Installing/Updating required libraries..."
     - pip install -r requirements.txt  # Установка/обновление библиотек из requirements.txt
     - echo "Restarting the Telegram bot service..."
     - sudo systemctl restart bot.service  # Используйте sudo, если необходимо
   only:
-    - main  
+    - main
