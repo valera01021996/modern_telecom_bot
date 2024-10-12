@@ -48,9 +48,11 @@ async def check_traffic(message: Message, state: FSMContext):
 @dp.message_handler(state=FSMDigitnet.check_traffic)
 async def show_traffic(message: Message, state: FSMContext):
     chat_id = message.chat.id
-    result = get_traffic_info(message.text)
+    result, max_limit = get_traffic_info(message.text)
+    print(max_limit)
     # await bot.send_message(chat_id, result)
-    await bot.send_photo(chat_id, photo=result, caption=f"График текущей скорости по IP адресу: {message.text}")
+    await bot.send_photo(chat_id, photo=result, caption=f"График текущей скорости по IP адресу: {message.text}\n"
+                                                        f"Тариф: {max_limit} Мбит/с")
     await state.finish()
     await bot.send_message(chat_id, "Выберите, что вас интересует", reply_markup=generate_main_menu())
 

@@ -16,13 +16,16 @@ def get_traffic_info(ip_address):
 
     upload = ""
     download = ""
+    max_download_limit = ""
     plt.style.use('ggplot')
 
-    for queue in queues.select('target', 'rate'):
+    for queue in queues.select('target', 'rate', 'max-limit'):
         if queue['target'] == ip_address + "/32":
             rate_splitted = queue['rate'].split('/')
             upload = int(rate_splitted[0]) / 1000000
             download = int(rate_splitted[1]) / 1000000
+            max_limit_splitted = queue['max-limit'].split('/')
+            max_download_limit = int(max_limit_splitted[1]) / 1000000
     fig, ax = plt.subplots()
     bars = ax.bar(['Upload', 'Download'], [upload, download], color=['#1f77b4', '#2ca02c'],
                   edgecolor='black', linewidth=1.5)
@@ -59,6 +62,6 @@ def get_traffic_info(ip_address):
     plt.close()
 
     if buffer:
-        return buffer
+        return buffer, max_download_limit
     else:
         return "Соответствие не найдено !"
