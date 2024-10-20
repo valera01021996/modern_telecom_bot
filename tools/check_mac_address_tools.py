@@ -16,13 +16,13 @@ def check_arp_entry(ip_address):
 
     if arp_entries:
         for entry in arp_entries:
-            mac_address = entry.get('mac-address', 'N/A')
-            interface = entry.get('interface', 'N/A')
-            connection.disconnect()
-            return f"✅ IP: {ip_address} найден в ARP. \nMAC Address: {mac_address} \nInterface: {interface}"
-    else:
-        connection.disconnect()
-        return f"❗ IP: {ip_address} не найден в ARP."
+            mac_address = entry.get('mac-address')
+            if mac_address:
+                interface = entry.get('interface', 'N/A')
+                connection.disconnect()
+                return f"✅ IP: {ip_address} найден в ARP.\nMAC Address: {mac_address}\nInterface: {interface}"
+    connection.disconnect()
+    return f"❗ IP: {ip_address} не найден в ARP."
 
 
 # Пример вызова функции
