@@ -49,12 +49,15 @@ async def check_traffic(message: Message, state: FSMContext):
 async def show_traffic(message: Message, state: FSMContext):
     chat_id = message.chat.id
     result, max_limit = get_traffic_info(message.text)
-    print(max_limit)
+    if result is None:
+        await message.reply(max_limit)
+        await state.finish()
+    else:
     # await bot.send_message(chat_id, result)
-    await bot.send_photo(chat_id, photo=result, caption=f"График текущей скорости по IP адресу: {message.text}\n"
-                                                        f"Тариф: {max_limit} Мбит/с")
-    await state.finish()
-    await bot.send_message(chat_id, "Выберите, что вас интересует", reply_markup=generate_main_menu())
+        await bot.send_photo(chat_id, photo=result, caption=f"График текущей скорости по IP адресу: {message.text}\n"
+                                                            f"Тариф: {max_limit} Мбит/с")
+        await state.finish()
+        await bot.send_message(chat_id, "Выберите, что вас интересует", reply_markup=generate_main_menu())
 
 
 @dp.message_handler(Text(equals="Проверить сессию PPPoE"))
