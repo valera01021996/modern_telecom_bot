@@ -3,6 +3,7 @@ from librouteros.login import plain
 import matplotlib.pyplot as plt
 import io
 import matplotlib.patheffects as path_effects
+import ipaddress
 
 def get_traffic_info(ip_address):
     connection = librouteros.connect(
@@ -11,6 +12,11 @@ def get_traffic_info(ip_address):
         host='192.168.100.1',
         login_method=plain
     )
+
+    try:
+        ip = ipaddress.ip_address(ip_address)
+    except ValueError:
+        return "Неправильный IP адрес!"
 
     queues = connection.path('/queue/simple')
 
